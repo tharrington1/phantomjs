@@ -471,7 +471,7 @@ function checkPhantomjsVersion(phantomPath) {
   console.log('Found PhantomJS at', phantomPath, '...verifying')
   return kew.nfcall(cp.execFile, phantomPath, ['--version']).then(function (stdout) {
     var version = stdout.trim()
-    if (helper.version == version) {
+    if (helper.version == version || helper.allowedOtherVersions.indexOf(version) > -1) {
       return true
     } else {
       console.log('PhantomJS detected, but wrong version', stdout.trim(), '@', phantomPath + '.')
